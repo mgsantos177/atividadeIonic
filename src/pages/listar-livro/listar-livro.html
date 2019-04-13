@@ -1,0 +1,27 @@
+<!--
+  Generated template for the ListarLivroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>listarLivro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let livro of livros" (click)= "irParaDetalhes(livro)">
+          <img src="../../assets/imgs/fundacao.jpg"/>
+          <h2>{{livro.titulo}}</h2>
+          <p>{{livro.subtitulo}}</p>
+          <p>{{livro.autor.nome}}</p>
+          
+        </ion-item>
+      </ion-list>
+
+</ion-content>
