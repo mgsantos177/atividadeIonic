@@ -4,6 +4,9 @@ import { Autor } from '../../model/autor';
 import { Livro } from '../../model/livro';
 import { Editora } from '../../model/editora';
 import { DetalhesLivroPage } from '../detalhes-livro/detalhes-livro';
+import { BookProvider } from '../../providers/book/book';
+
+
 
 /**
  * Generated class for the ListarLivroPage page.
@@ -18,7 +21,8 @@ import { DetalhesLivroPage } from '../detalhes-livro/detalhes-livro';
   templateUrl: 'listar-livro.html',
 })
 export class ListarLivroPage {
-
+  
+  public lista_livros = new Array<any>();
   public livros: Livro[]; 
   autor: Autor = {
     nome: 'Isaac Asimov', nascimento: 1902, descricao: 'Autor Britanico'
@@ -59,16 +63,33 @@ export class ListarLivroPage {
       publicacao: '1972',
       paginas: 240
     }
+  bookProvider: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private booksProvider: BookProvider) {
    this.livros = [this.livro1, this.livro2, this.livro3];
+
   }
 
   irParaDetalhes(livro: Livro){
-    this.navCtrl.push(DetalhesLivroPage,{livroSelecionado: livro});
+    this.navCtrl.push(DetalhesLivroPage,{"livroSelecionado": livro});
+    
   }
 
   ionViewDidLoad() {
+      this.booksProvider.getBooks().subscribe(
+      data=> {
+        const response = (data as any);
+        const objeto_retorno = JSON.parse(response._body);
+        
+        for (var val in objeto_retorno){
+          console.log(val);
+          this.lista_livros.push(objeto_retorno[val]);
+        }
+        
+      }, error => {
+        console.log(error);
+      }
+    )
     console.log('ionViewDidLoad ListarLivroPage');
   }
 

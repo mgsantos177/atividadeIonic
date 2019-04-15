@@ -13,13 +13,19 @@ import { CadastrarLivroPageModule } from '../pages/cadastrar-livro/cadastrar-liv
 import { ListarLivroPageModule } from '../pages/listar-livro/listar-livro.module';
 import { LivrosPage } from '../pages/livros/livros';
 import { DetalhesLivroPageModule } from '../pages/detalhes-livro/detalhes-livro.module';
+import { BookProvider } from '../providers/book/book';
+import { HttpModule } from '@angular/http';
+import { AutoresPage } from '../pages/autores/autores';
+import { ListarAutoresPageModule } from '../pages/listar-autores/listar-autores.module';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    LivrosPage
+    LivrosPage,
+    AutoresPage
   ],
   imports: [
     BrowserModule,
@@ -27,19 +33,23 @@ import { DetalhesLivroPageModule } from '../pages/detalhes-livro/detalhes-livro.
     PesquisarLivroPageModule,
     CadastrarLivroPageModule,
     ListarLivroPageModule,
-    DetalhesLivroPageModule
+    DetalhesLivroPageModule,
+    HttpModule,
+    ListarAutoresPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ListPage,
-    LivrosPage
+    LivrosPage,
+    AutoresPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BookProvider
   ]
 })
 export class AppModule {}

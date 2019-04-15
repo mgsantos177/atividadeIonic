@@ -15,28 +15,19 @@
 
 <ion-content padding>
   <ion-card>
-    <img src="{{livro.capa}}" width=”100” height=”60” />
+    <img src="{{livro.thumbnail_url}}"/>
     <ion-card-content>
       <ion-card-title>
-        {{livro.titulo}}
+        {{livro.details.title}}
       </ion-card-title>
       <p>
-        Subtitulo: {{livro.subtitulo}}
+       Autor: {{livro.details.authors[0].name}}
       </p>
       <p>
-        Autor: {{livro.autor.nome}}
+       Numero de Paginas: {{livro.details.number_of_pages}}
       </p>
       <p>
-        Editora: {{livro.editora.nome}}
-        </p>
-      <p>
-        ISBN: {{livro.isbn}}
-      </p>
-      <p>
-        Ano de Publicação: {{livro.publicacao}}
-      </p>
-      <p>
-        Quantidade de Paginas: {{livro.paginas}}
+       Editora: {{livro.details.publishers}}
       </p>
 
     </ion-card-content>
